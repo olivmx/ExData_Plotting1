@@ -1,4 +1,4 @@
-#plot 1 code
+#plot 3 code
 
 
 1. READ THE CODE AND STRIP ALL LINES NOT USED
@@ -31,12 +31,18 @@ dayHrMinNumeric<-
 #openfile
 png (filename="plot3.png", width=480, height=480)
 
-plot()
-lines(dayHrMinNumeric, workingSet$Sub_metering_1, type="l", col="black")
+
+plot(dayHrMinNumeric, workingSet$Sub_metering_1, type="l", col="black", 
+     ylab="Energy sub Metering", xlab="", xaxt="n" )
 lines(dayHrMinNumeric, workingSet$Sub_metering_2, type="l", col="red")
 lines(dayHrMinNumeric, workingSet$Sub_metering_3, type="l", col="blue")
 
 #4. format plot
+axis (1, at=c(0,24,48), labels=c("Thu","Fri","Sat"))
+legend ("topright", lwd="1", 
+          col=c("black","red","blue"),
+        legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3") )
+
 
 #close file
 dev.off()

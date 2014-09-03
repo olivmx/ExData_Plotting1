@@ -1,4 +1,4 @@
-#plot 1 code
+#plot 2 code
 
 
 1. READ THE CODE AND STRIP ALL LINES NOT USED
@@ -31,9 +31,12 @@ dayHrMinNumeric<-
 #openfile
 png (filename="plot2.png", width=480, height=480)
 
-par(xlog="false")
-plot(dayHrMinNumeric, workingSet$Global_active_power, type="l", ylab="Global Active Power (kilobytes)" , xlab="")
+
+#par(lab=c(1,5,7))
+#par(xaxt="n")
+plot(dayHrMinNumeric, workingSet$Global_active_power, type="l", ylab="Global Active Power (kilobytes)" , xlab="", xaxt = "n")
 #4. format plot
+axis (1, at=c(0,24,48), labels=c("Thu","Fri","Sat"))
 
 
 #close file

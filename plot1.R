@@ -28,6 +28,6 @@ hist(workingSet$Global_active_power, col="red", main="Global Active Power", xlab
 
 #close file
 dev.off()
-
+ 
 
 

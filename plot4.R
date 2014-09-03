@@ -1,4 +1,4 @@
-#plot 1 code
+#plot 4 code
 
 
 1. READ THE CODE AND STRIP ALL LINES NOT USED
@@ -26,20 +26,37 @@ strptime(workingSet$Time[1], format="%H:%M:%S")
 dayHrMinNumeric<-
      (as.numeric(substr(workingSet$Date,start=9, stop=10))-1)*24+
      as.numeric(substr(workingSet$Time, start=1, stop=2))+as.numeric(substr(workingSet$Time, start=4, stop=5))/60
-#3. construct plot
+#3. construct plot multiple rows and columns
 
 #openfile
-png (filename="plot1.png", width=480, height=480)
+png (filename="plot4.png", width=480, height=480)
 
-op <- par(mfrow = c(2, 2), # 2 x 2 pictures on one plot
-          pty = "s")       # square plotting region,
-# independent of device size
-plot()
-lines(dayHrMinNumeric, workingSet$Sub_metering_1, type="l", col="black")
+par(mfrow = c(2, 2)) # 2 x 2 pictures on one plot
+par(cex=0.70)
+
+# row 1,col1 plot
+plot(dayHrMinNumeric, workingSet$Global_active_power, type="l", ylab="Global Active Power" , xlab="", xaxt = "n")
+axis (1, at=c(0,24,48), labels=c("Thu","Fri","Sat"))
+
+# row 1,col2 plot
+plot(dayHrMinNumeric, workingSet$Voltage, type="l", ylab="Voltage" , xlab="datetime", xaxt = "n")
+axis (1, at=c(0,24,48), labels=c("Thu","Fri","Sat"))
+
+# row 2,col1 plot
+plot(dayHrMinNumeric, workingSet$Sub_metering_1, type="l", col="black", 
+     ylab="Energy sub Metering", xlab="", xaxt="n" )
 lines(dayHrMinNumeric, workingSet$Sub_metering_2, type="l", col="red")
 lines(dayHrMinNumeric, workingSet$Sub_metering_3, type="l", col="blue")
+axis (1, at=c(0,24,48), labels=c("Thu","Fri","Sat"))
+legend ("topright", lwd="1", 
+        col=c("black","red","blue"),
+        legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3") )
 
-#4. format plot
+# row 2,col2 plot
+plot(dayHrMinNumeric, workingSet$Global_reactive_power, type="l", ylab="Global_reactive_power" , xlab="datetime", xaxt = "n")
+axis (1, at=c(0,24,48), labels=c("Thu","Fri","Sat"))
+axis (2, at=c(seq(from=0.1,to=0.5,length.out=5)), labels=c(seq(from=0.1,to=0.5,length.out=5)) )
+
 
 
 
